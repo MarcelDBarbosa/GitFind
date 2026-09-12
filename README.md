@@ -1,70 +1,97 @@
-# Getting Started with Create React App
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![CSS](https://img.shields.io/badge/css-%23663399.svg?style=for-the-badge&logo=css&logoColor=white) ![GitHub API](https://img.shields.io/badge/GitHub%20API-181717.svg?style=for-the-badge&logo=github&logoColor=white)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# GitFind
 
-## Available Scripts
+Aplicação web desenvolvida com React para consultar usuários do GitHub e listar seus repositórios públicos.
 
-In the project directory, you can run:
+Ao informar um nome de usuário, a aplicação consulta a API do GitHub e exibe o avatar, nome, login, biografia e repositórios públicos encontrados. A busca pode ser realizada pelo botão `BUSCAR` ou pressionando `ENTER` no campo de usuário.
 
-### `npm start`
+## Tecnologias
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React
+- JavaScript
+- CSS
+- Create React App
+- GitHub REST API
+- React Testing Library
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Estrutura do projeto
 
-### `npm test`
+```text
+src/
+├── index.js
+├── styles.css
+├── assets/
+│   └── github-img.png
+├── components/
+│   ├── Header/
+│   │   ├── index.js
+│   │   └── styles.css
+│   ├── ItemList/
+│   │   ├── index.jsx
+│   │   └── styles.css
+│   ├── RepositoryList/
+│   │   └── index.js
+│   ├── SearchForm/
+│   │   └── index.js
+│   └── UserProfile/
+│       └── index.js
+├── hooks/
+│   └── useGitHubUser.js
+├── pages/
+│   └── Home/
+│       ├── index.js
+│       ├── index.test.js
+│       └── styles.css
+└── services/
+    └── github.js
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Responsabilidades principais
 
-### `npm run build`
+- `pages/Home/index.js`: compõe a página e conecta os componentes ao hook de busca.
+- `components/SearchForm`: controla o campo de usuário e dispara a busca pelo botão ou pela tecla `ENTER`.
+- `components/UserProfile`: exibe os dados do usuário encontrado.
+- `components/RepositoryList`: exibe a lista de repositórios públicos.
+- `components/ItemList`: exibe individualmente o nome e a descrição de um repositório.
+- `components/Header`: renderiza o cabeçalho da aplicação.
+- `hooks/useGitHubUser.js`: controla loading, erros, usuário atual e repositórios.
+- `services/github.js`: centraliza as requisições e o tratamento básico da API do GitHub.
+- `pages/Home/index.test.js`: testa o fluxo de busca usando a tecla `ENTER`.
+- `styles.css` e arquivos `styles.css` dos componentes: definem os estilos globais e específicos da interface.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Como executar
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Instale as dependências do projeto:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm install
+```
 
-### `npm run eject`
+Inicie o servidor de desenvolvimento:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Depois, acesse [http://localhost:3000](http://localhost:3000) no navegador.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Outros comandos
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Gerar uma versão otimizada para produção:
 
-## Learn More
+```bash
+npm run build
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Executar os testes:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm test
+```
 
-### Code Splitting
+## Observações
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- A aplicação utiliza os endpoints públicos da API do GitHub.
+- Buscas para usuários inexistentes ou problemas de comunicação exibem uma mensagem de erro.
+- Usuários sem repositórios públicos recebem uma mensagem informativa.
