@@ -7,8 +7,7 @@ header {
     justify-content: center;
 }
 
-header h1 {
-    font-family: 'Inter, Roboto, Arial';
+header h2 {
     font-size: 32px;
     color: #FFFFFF;
 }
