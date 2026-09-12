@@ -43,6 +43,7 @@ button {
     color: #FFFFFF;
     font-size: 18px;
     padding: 10px;
+    cursor: pointer;
 }
 
 button:disabled {
